@@ -1,3 +1,5 @@
+
+
 @mixin button($color: green) {
   height: 24px;
   min-width: 24px;
@@ -22,4 +24,15 @@
   margin: 0;
   padding: 0;
   list-style: none;
+}
+@mixin resize($color) {
+  position: absolute;
+  opacity: 0;
+  right: 0;
+  bottom: 0;
+  background: $color;
+  z-index: 1000;
+  &:hover{
+    opacity: 1!important;
+  }
 }
