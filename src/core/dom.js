@@ -45,12 +45,32 @@ class Dom {
     if (prefix === 'all') {
       return this.$el.querySelectorAll(selector)
     }
-    return this.$el.querySelector(selector)
+    return $(this.$el.querySelector(selector))
   }
   css(styles = {}) {
     Object.keys(styles).forEach( key => {
       this.$el.style[key] = styles[key]
     })
+  }
+  addClass(className = '') {
+    this.$el.classList.add(className)
+  }
+  removeClass(className = '') {
+    this.$el.classList.remove(className)
+  }
+  focus() {
+    this.$el.focus()
+    return this
+  }
+  id(parse) {
+    if (parse) {
+      const parse = this.id().split(':')
+      return {
+        row: +parse[0],
+        col: +parse[1]
+      }
+    }
+    return this.data.id
   }
 }
 

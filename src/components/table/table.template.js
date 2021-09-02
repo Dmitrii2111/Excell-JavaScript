@@ -3,12 +3,15 @@ const CODES = {
   Z: 90
 }
 
-function createCell(_, col) {
+function createCell(col, row) {
   return `
     <div 
         class="excel__table__row__data__cell" 
         contenteditable 
-        data-col="${col}">
+        data-col="${col}"
+        data-type="cell"
+        data-id="${row}:${col}"
+        >
 </div>
   `
 }
@@ -49,13 +52,12 @@ export function createTable(rowsCount = 15) {
       })
       .join('')
   rows.push(createRow(cols, null))
-  for (let i = 0; i < rowsCount; i++) {
-    // eslint-disable-next-line no-undef
+  for (let row = 0; row < rowsCount; row++) {
     const cells = new Array(colsCount)
         .fill('')
-        .map(createCell)
+        .map((_, col) => createCell(col, row))
         .join('')
-    rows.push(createRow( cells, (i+1)))
+    rows.push(createRow( cells, (row+1)))
   }
   return rows.join('')
 }
