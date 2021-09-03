@@ -9,7 +9,17 @@ class Dom {
       this.$el.innerHTML = html
       return this
     }
+    if (this.$el.tagName.toLowerCase() === 'input') {
+      return this.$el.value.trim()
+    }
     return this.$el.outerHTML.trim()
+  }
+  text(text) {
+    if (typeof text === 'string') {
+      this.$el.textContent = text
+      return this
+    }
+    return this.$el.textContent.trim()
   }
   on(eventType, callback) {
     this.$el.addEventListener(eventType, callback)
